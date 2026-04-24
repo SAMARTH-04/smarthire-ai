@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+
+  api:
+    build: .
+    container_name: smarthire_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+    restart: always
+
+  db:
+    image: mysql:8.0
+    container_name: smarthire_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: smarthire
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+  redis:
+    image: redis:7
+    container_name: smarthire_redis  
+    restart: always
+
+volumes:
+  mysql_data:
