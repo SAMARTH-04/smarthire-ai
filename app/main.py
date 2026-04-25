@@ -2,9 +2,11 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from app.dependencies.database import get_db
 from app.api.auth import router as auth_router
+from app.api.resume import router as resume_router
 
 app = FastAPI(title="SmartHire AI")
 app.include_router(auth_router)
+app.include_router(resume_router)
 
 @app.get("/")
 def health_check():
