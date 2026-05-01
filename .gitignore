@@ -22,3 +22,5 @@ mysql_data/
 
 # OS
 .DS_Store
+
+git config --global core.fileMode false
